@@ -99,4 +99,7 @@ def learning_changed(path):
     fish2_test = pd.DataFrame({'redOff':ratioPrered_test_2, 'redOn':ratioInred_test_2})
     fish2_train = pd.DataFrame({'redOff':ratioPrered_train_2, 'redOn':ratioInred_train_2, 'filmOpen':ratioInfilm_2})
     
-    return fish1_baseline,fish1_train,fish1_test, fish2_baseline,fish2_train,fish2_test
+    col = pd.MultiIndex.from_arrays([np.array(['base','base','train','train','trian','test','test']),np.array(['redOff','redOn','redOff','redON','filmOpen','redOff','redOn'])])
+    fish1 = pd.DataFrame(pd.concat([fish1_baseline,fish1_train,fish1_test],axis=1).values,columns=col)
+    fish2 = pd.DataFrame(pd.concat([fish2_baseline,fish2_train,fish2_test],axis=1).values,columns=col)
+    return fish1, fish2
